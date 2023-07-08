@@ -22,6 +22,7 @@ private slots:
     void insertImage();
     void increaseImage();
     void decreaseImage();
+    void insertBullet();
 
 
 };

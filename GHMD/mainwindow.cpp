@@ -14,6 +14,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->insertImage, SIGNAL(released()), this, SLOT(insertImage()));
     connect(ui->increaseImage, SIGNAL(released()), this, SLOT(increaseImage()));
     connect(ui->decreaseImage, SIGNAL(released()), this, SLOT(decreaseImage()));
+    connect(ui->insertBullet, SIGNAL(released()), this, SLOT(insertBullet()));
+
 
 }
 
@@ -48,4 +50,13 @@ void MainWindow::increaseImage(){
 
 void MainWindow::decreaseImage(){
 
+}
+
+void MainWindow::insertBullet(){
+    QTextListFormat::Style style = QTextListFormat::ListDisc;
+
+    QTextCursor cursor = ui->textEdit->textCursor();
+    QTextListFormat listFormat;
+    listFormat.setStyle( style );
+    cursor.createList( listFormat );
 }

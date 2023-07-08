@@ -16,7 +16,6 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTextBrowser>
-#include <QtWidgets/QToolButton>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -29,7 +28,7 @@ public:
     QPushButton *increaseImage;
     QPushButton *decreaseImage;
     QTextBrowser *textEdit;
-    QToolButton *toolButton;
+    QPushButton *insertBullet;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -42,24 +41,24 @@ public:
         centralwidget->setObjectName("centralwidget");
         insertImage = new QPushButton(centralwidget);
         insertImage->setObjectName("insertImage");
-        insertImage->setGeometry(QRect(150, 50, 100, 32));
+        insertImage->setGeometry(QRect(220, 30, 100, 32));
         increaseImage = new QPushButton(centralwidget);
         increaseImage->setObjectName("increaseImage");
-        increaseImage->setGeometry(QRect(380, 30, 100, 32));
+        increaseImage->setGeometry(QRect(340, 30, 100, 32));
         decreaseImage = new QPushButton(centralwidget);
         decreaseImage->setObjectName("decreaseImage");
-        decreaseImage->setGeometry(QRect(380, 70, 100, 32));
+        decreaseImage->setGeometry(QRect(340, 70, 100, 32));
         textEdit = new QTextBrowser(centralwidget);
         textEdit->setObjectName("textEdit");
-        textEdit->setGeometry(QRect(140, 140, 256, 192));
+        textEdit->setGeometry(QRect(100, 140, 371, 231));
         textEdit->setReadOnly(false);
-        toolButton = new QToolButton(centralwidget);
-        toolButton->setObjectName("toolButton");
-        toolButton->setGeometry(QRect(40, 110, 81, 31));
+        insertBullet = new QPushButton(centralwidget);
+        insertBullet->setObjectName("insertBullet");
+        insertBullet->setGeometry(QRect(220, 70, 100, 32));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 593, 22));
+        menubar->setGeometry(QRect(0, 0, 593, 24));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -76,7 +75,7 @@ public:
         insertImage->setText(QCoreApplication::translate("MainWindow", "Insert Image", nullptr));
         increaseImage->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         decreaseImage->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
-        toolButton->setText(QCoreApplication::translate("MainWindow", "...", nullptr));
+        insertBullet->setText(QCoreApplication::translate("MainWindow", "Bullet Point", nullptr));
     } // retranslateUi
 
 };
