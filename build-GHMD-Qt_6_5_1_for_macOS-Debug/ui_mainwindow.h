@@ -29,6 +29,10 @@ public:
     QPushButton *decreaseImage;
     QTextBrowser *textEdit;
     QPushButton *insertBullet;
+    QTextBrowser *output;
+    QPushButton *convert;
+    QPushButton *clear;
+    QPushButton *copy;
     QMenuBar *menubar;
     QStatusBar *statusbar;
 
@@ -36,29 +40,41 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName("MainWindow");
-        MainWindow->resize(593, 461);
+        MainWindow->resize(900, 600);
         centralwidget = new QWidget(MainWindow);
         centralwidget->setObjectName("centralwidget");
         insertImage = new QPushButton(centralwidget);
         insertImage->setObjectName("insertImage");
-        insertImage->setGeometry(QRect(220, 30, 100, 32));
+        insertImage->setGeometry(QRect(220, 20, 101, 31));
         increaseImage = new QPushButton(centralwidget);
         increaseImage->setObjectName("increaseImage");
-        increaseImage->setGeometry(QRect(340, 30, 100, 32));
+        increaseImage->setGeometry(QRect(320, 20, 21, 31));
         decreaseImage = new QPushButton(centralwidget);
         decreaseImage->setObjectName("decreaseImage");
-        decreaseImage->setGeometry(QRect(340, 70, 100, 32));
+        decreaseImage->setGeometry(QRect(200, 20, 21, 31));
         textEdit = new QTextBrowser(centralwidget);
         textEdit->setObjectName("textEdit");
-        textEdit->setGeometry(QRect(100, 140, 371, 231));
+        textEdit->setGeometry(QRect(20, 60, 541, 501));
         textEdit->setReadOnly(false);
         insertBullet = new QPushButton(centralwidget);
         insertBullet->setObjectName("insertBullet");
-        insertBullet->setGeometry(QRect(220, 70, 100, 32));
+        insertBullet->setGeometry(QRect(350, 20, 101, 31));
+        output = new QTextBrowser(centralwidget);
+        output->setObjectName("output");
+        output->setGeometry(QRect(580, 60, 291, 501));
+        convert = new QPushButton(centralwidget);
+        convert->setObjectName("convert");
+        convert->setGeometry(QRect(460, 20, 101, 31));
+        clear = new QPushButton(centralwidget);
+        clear->setObjectName("clear");
+        clear->setGeometry(QRect(20, 20, 171, 31));
+        copy = new QPushButton(centralwidget);
+        copy->setObjectName("copy");
+        copy->setGeometry(QRect(580, 20, 291, 31));
         MainWindow->setCentralWidget(centralwidget);
         menubar = new QMenuBar(MainWindow);
         menubar->setObjectName("menubar");
-        menubar->setGeometry(QRect(0, 0, 593, 24));
+        menubar->setGeometry(QRect(0, 0, 900, 24));
         MainWindow->setMenuBar(menubar);
         statusbar = new QStatusBar(MainWindow);
         statusbar->setObjectName("statusbar");
@@ -76,6 +92,9 @@ public:
         increaseImage->setText(QCoreApplication::translate("MainWindow", "+", nullptr));
         decreaseImage->setText(QCoreApplication::translate("MainWindow", "-", nullptr));
         insertBullet->setText(QCoreApplication::translate("MainWindow", "Bullet Point", nullptr));
+        convert->setText(QCoreApplication::translate("MainWindow", "Convert", nullptr));
+        clear->setText(QCoreApplication::translate("MainWindow", "Clear", nullptr));
+        copy->setText(QCoreApplication::translate("MainWindow", "Copy MarkDown!", nullptr));
     } // retranslateUi
 
 };

@@ -23,7 +23,8 @@ private slots:
     void increaseImage();
     void decreaseImage();
     void insertBullet();
-
-
+    void convert();
+    void clear();
+    void copy();
 };
 #endif // MAINWINDOW_H

@@ -4,7 +4,7 @@
 #include "qimagereader.h"
 #include "QTextBlock"
 #include "QTextFragment"
-
+#include "QClipboard"
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -15,7 +15,9 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->increaseImage, SIGNAL(released()), this, SLOT(increaseImage()));
     connect(ui->decreaseImage, SIGNAL(released()), this, SLOT(decreaseImage()));
     connect(ui->insertBullet, SIGNAL(released()), this, SLOT(insertBullet()));
-
+    connect(ui->convert, SIGNAL(released()), this, SLOT(convert()));
+    connect(ui->clear, SIGNAL(released()), this, SLOT(clear()));
+    connect(ui->copy, SIGNAL(released()), this, SLOT(copy()));
 
 }
 
@@ -59,4 +61,21 @@ void MainWindow::insertBullet(){
     QTextListFormat listFormat;
     listFormat.setStyle( style );
     cursor.createList( listFormat );
+}
+
+void MainWindow::convert(){
+
+    QString convertedText = ui->textEdit->document()->toMarkdown();
+    ui->output->setPlaceholderText(convertedText);
+}
+
+void MainWindow::clear(){
+    ui->textEdit->clear();
+    ui->output->setPlaceholderText("");
+}
+
+void MainWindow::copy(){
+    QString md = ui->output->placeholderText();
+    QClipboard* clipboard = QApplication::clipboard();
+    clipboard->setText(md);
 }
