@@ -19,12 +19,10 @@ private:
     Ui::MainWindow *ui;
 
 private slots:
-    void insertImage();
-    void increaseImage();
-    void decreaseImage();
     void insertBullet();
     void convert();
     void clear();
     void copy();
+    void insertHeading(int);
 };
 #endif // MAINWINDOW_H

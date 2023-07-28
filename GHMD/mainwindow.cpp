@@ -11,13 +11,12 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    connect(ui->insertImage, SIGNAL(released()), this, SLOT(insertImage()));
-    connect(ui->increaseImage, SIGNAL(released()), this, SLOT(increaseImage()));
-    connect(ui->decreaseImage, SIGNAL(released()), this, SLOT(decreaseImage()));
     connect(ui->insertBullet, SIGNAL(released()), this, SLOT(insertBullet()));
     connect(ui->convert, SIGNAL(released()), this, SLOT(convert()));
     connect(ui->clear, SIGNAL(released()), this, SLOT(clear()));
     connect(ui->copy, SIGNAL(released()), this, SLOT(copy()));
+    connect(ui->headingComboBox, SIGNAL(currentIndexChanged(int)), this, SLOT(insertHeading(int)));
+
 
 }
 
@@ -26,31 +25,32 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::insertHeading(int index){
+    QString selectedText = ui->textEdit->textCursor().selectedText();
+    QString headerText;
+    bool validSelection = true;
+    switch (index){
+        case 1:{
+            headerText = "<h1>" + selectedText + "</h1>";
+            break;
+        }
+        case 2:{
+            headerText = "<h2>" + selectedText + "</h2>";
+            break;
+        }
+        case 3:{
+            headerText = "<h3>" + selectedText + "</h3>";
+            break;
+        }
+        default:{
+            validSelection = false;
+            break;
+        }
+    }
 
-
-void MainWindow::insertImage(){
-    QString file = QFileDialog::getOpenFileName(this, tr("Select an image"),
-                                                ".", tr("Bitmap Files (*.bmp)\n"
-                                                   "JPEG (*.jpg *jpeg)\n"
-                                                   "GIF (*.gif)\n"
-                                                   "PNG (*.png)\n"));
-    QUrl Uri ( QString ( "file://%1" ).arg ( file ) );
-    QImage image = QImageReader ( file ).read();
-
-    ui->textEdit->loadResource(QTextDocument::ImageResource, Uri);
-    QTextCursor cursor = ui->textEdit->textCursor();
-    QTextImageFormat imageFormat;
-    imageFormat.setWidth( image.width() );
-    imageFormat.setHeight( image.height() );
-    imageFormat.setName( Uri.toString() );
-    cursor.insertImage(imageFormat);
-}
-
-void MainWindow::increaseImage(){
-
-}
-
-void MainWindow::decreaseImage(){
+    if (!selectedText.isEmpty() && validSelection) {
+        ui->textEdit->insertHtml(headerText);
+    }
 
 }
 
